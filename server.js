@@ -14,7 +14,10 @@ const {
   UTMIFY_TEST,
   MOCK_ADEX,
   PORT = 3000,
-} = process.env;
+} = Object.fromEntries(
+  /* "PREENCHER" é o valor provisório no Railway (ele não aceita variável vazia): conta como vazio. */
+  Object.entries(process.env).filter(([, v]) => v && v.trim().toUpperCase() !== "PREENCHER")
+);
 
 const ADEX_BASE = "https://api.adex.cash/functions/v1";
 const MOCK = MOCK_ADEX === "true";
